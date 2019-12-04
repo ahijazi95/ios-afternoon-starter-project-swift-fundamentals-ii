@@ -16,7 +16,31 @@ import UIKit
 //: e. Use a `String?` for the Terminal, since it may not be set yet (i.e.: waiting to arrive on time)
 //:
 //: f. Use a class to represent a `DepartureBoard` with a list of departure flights, and the current airport
+enum FlightStatus: String {
+    case En_Route
+    case Delayed
+    case Cancelled
+    case Scheduled
+    case Landed
+}
 
+struct Airport {
+    var destination: String
+}
+struct Flight {
+    var departureTime: Date?
+    var terminal: String?
+    var flightstatus: FlightStatus
+}
+class DepartureBoard {
+    var flight: [Flight]
+    var airport: Airport
+    
+    init(flight: [Flight], airport: Airport) {
+        self.flight = flight
+        self.airport = airport
+    }
+}
 
 
 //: ## 2. Create 3 flights and add them to a departure board
@@ -29,7 +53,7 @@ import UIKit
 //: d. Make one of the flights have a `nil` terminal because it has not been decided yet.
 //:
 //: e. Stretch: Look at the API for [`DateComponents`](https://developer.apple.com/documentation/foundation/datecomponents?language=objc) for creating a specific time
-
+let departureBoard = DepartureBoard(flight: <#T##[Flight]#>, airport: <#T##Airport#>)
 
 
 //: ## 3. Create a free-standing function that can print the flight information from the `DepartureBoard`
@@ -96,6 +120,3 @@ import UIKit
 //: e. Make sure to cast the numbers to the appropriate types so you calculate the correct airfare
 //:
 //: f. Stretch: Use a [`NumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) with the `currencyStyle` to format the amount in US dollars.
-
-
-
